@@ -34,7 +34,7 @@ class FileStorage:
         """
             returns private attribute: __objects
         """
-        if cls is not None:
+        if cls in FileStorage.CNC.values():
             new_objs = {}
             for clsid, obj in FileStorage.__objects.items():
                 if type(obj).__name__ == cls:
@@ -110,7 +110,7 @@ class FileStorage:
         """
             retrieves one object based on class name and id
         """
-        if cls and id:
+        if cls in FileStorage.CNC.values() and id:
             fetch_obj = "{}.{}".format(cls, id)
             all_obj = self.all(cls)
             return all_obj.get(fetch_obj)

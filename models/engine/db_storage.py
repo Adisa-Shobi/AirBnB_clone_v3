@@ -131,4 +131,7 @@ class DBStorage:
         """
             returns the count of all objects in storage
         """
-        return (len(self.all(cls)))
+        if cls in DBStorage.CNC.values():
+            class_no = self.__session.query(cls).count()
+            return class_no
+        return len(self.all())
