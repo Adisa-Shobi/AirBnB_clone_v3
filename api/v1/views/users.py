@@ -16,7 +16,7 @@ def users_no_id(user_id=None):
     """
 
     if request.method == 'GET':
-        all_users = storage.all('User')
+        all_users = storage.all(CNC.get('User'))
         all_users = [obj.to_json() for obj in all_users.values()]
         return jsonify(all_users)
 
@@ -40,7 +40,7 @@ def user_with_id(user_id=None):
     """
         users route that handles http requests with ID given
     """
-    user_obj = storage.get('User', user_id)
+    user_obj = storage.get(CNC.get('User'), user_id)
     if user_obj is None:
         abort(404, 'Not found')
 
