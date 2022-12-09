@@ -16,14 +16,13 @@ def places_per_city(city_id=None):
     """
         places route to handle http method for requested places by city
     """
-    city_obj = storage.get('City', city_id)
+    city_obj = storage.get(CNC.get('City'), city_id)
     if city_obj is None:
         abort(404, 'Not found')
 
     if request.method == 'GET':
-        all_places = storage.all('Place')
-        city_places = [obj.to_json() for obj in all_places.values()
-                       if obj.city_id == city_id]
+        places = city_obj.places
+        city_places = list(map(lambda x: x.to_json(), places))
         return jsonify(city_places)
 
     if request.method == 'POST':
@@ -51,7 +50,7 @@ def places_with_id(place_id=None):
     """
         places route to handle http methods for given place
     """
-    place_obj = storage.get('Place', place_id)
+    place_obj = storage.get(CNC.get('Place'), place_id)
     if place_obj is None:
         abort(404, 'Not found')
 
