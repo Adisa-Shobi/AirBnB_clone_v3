@@ -9,7 +9,7 @@ from flasgger.utils import swag_from
 
 
 @app_views.route('/amenities/', methods=['GET', 'POST'])
-@swag_from('swagger_yaml/amenities_no_id.yml', methods=['GET', 'POST'])
+git @swag_from('swagger_yaml/amenities_no_id.yml', methods=['GET', 'POST'])
 def amenities_no_id(amenity_id=None):
     """
         amenities route that handles http requests no ID given
