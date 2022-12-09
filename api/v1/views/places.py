@@ -32,7 +32,7 @@ def places_per_city(city_id=None):
         user_id = req_json.get("user_id")
         if user_id is None:
             abort(400, 'Missing user_id')
-        user_obj = storage.get('User', user_id)
+        user_obj = storage.get(CNC.get('User'), user_id)
         if user_obj is None:
             abort(404, 'Not found')
         if req_json.get("name") is None:
