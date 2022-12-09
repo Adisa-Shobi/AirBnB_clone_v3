@@ -22,8 +22,6 @@ def cities_per_state(state_id=None):
         all_cities = storage.all('City')
         state_cities = state_obj.cities
         state_cities = list(map(lambda x: x.to_json(), state_cities))
-        #[obj.to_json() for obj in all_cities.values()
-        #               if obj.state_id == state_id]
         return jsonify(state_cities)
 
     if request.method == 'POST':
