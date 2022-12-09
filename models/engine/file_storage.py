@@ -37,7 +37,7 @@ class FileStorage:
         if cls in FileStorage.CNC.values():
             new_objs = {}
             for clsid, obj in FileStorage.__objects.items():
-                if type(obj).__name__ == cls:
+                if obj.__class__ == cls:
                     new_objs[clsid] = obj
             return new_objs
         else:
@@ -111,7 +111,7 @@ class FileStorage:
             retrieves one object based on class name and id
         """
         if cls in FileStorage.CNC.values() and id:
-            fetch_obj = "{}.{}".format(cls, id)
+            fetch_obj = "{}.{}".format(cls.__name__, id)
             all_obj = self.all(cls)
             return all_obj.get(fetch_obj)
         return None

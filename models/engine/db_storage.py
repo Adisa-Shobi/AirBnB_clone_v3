@@ -119,10 +119,10 @@ class DBStorage:
         """
             retrieves one object based on class name and id
         """
-        if cls and id and cls in DBStorage.CNC.values():
+        if id and cls in DBStorage.CNC.values():
             try:
-                match = self.__session.query(cls).get(id)
-            except E:
+                match = self.__session.query(cls).filter(cls.id == id).one()
+            except Exception:
                 return None
             return match
         return None
