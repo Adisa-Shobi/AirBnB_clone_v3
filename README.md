@@ -154,6 +154,7 @@ EOF  all  create  destroy  help  quit  show  update
 No known bugs at this time. 
 
 ## Authors
+Shobi Ola-Adisa - [Github](https://github.com/Adisa-Shobi) / [Twitter](https://twitter.com/shob_ola)
 Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)  
 Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://twitter.com/earthtojhuang)
 Abel Bekele - [Github](https://github.com/AbelBekele) / [Twitter](https://twitter.com/abell_bekele)
