@@ -201,7 +201,7 @@ class HBNBCommand(cmd.Cmd):
         print('[', end='')
         l = 0
         if arg:
-            storage_objs = storage.all(arg[0])
+            storage_objs = storage.all(CNC.get(arg[0]))
         else:
             storage_objs = storage.all()
         l = len(storage_objs)

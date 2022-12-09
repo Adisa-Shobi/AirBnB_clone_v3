@@ -20,7 +20,7 @@ def reviews_per_place(place_id=None):
 
     if request.method == 'GET':
         reviews = place_obj.reviews
-        place_reviews = list(map(lambda x: x.to_json()), reviews)
+        place_reviews = list(map(lambda x: x.to_json(), reviews))
         return jsonify(place_reviews)
 
     if request.method == 'POST':
