@@ -13,10 +13,11 @@ STORAGE_TYPE = os.environ.get('HBNB_TYPE_STORAGE')
 class Amenity(BaseModel, Base):
     """Amenity class handles all application amenities"""
     if STORAGE_TYPE == "db":
+        from models.place import place_amenity
         __tablename__ = 'amenities'
         name = Column(String(128), nullable=False)
-        place_amenities = relationship('PlaceAmenity',
-                                       backref='amenities',
-                                       cascade='delete')
+        place_amenities = relationship('Place',
+                                       secondary=place_amenity,
+                                       back_populates='amenities')
     else:
         name = ''

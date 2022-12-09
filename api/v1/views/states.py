@@ -15,7 +15,7 @@ def states_no_id():
         states route to handle http method for requested states no id provided
     """
     if request.method == 'GET':
-        all_states = storage.all('State')
+        all_states = storage.all(CNC.get('State'))
         all_states = list(obj.to_json() for obj in all_states.values())
         return jsonify(all_states)
 

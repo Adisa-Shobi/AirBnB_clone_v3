@@ -14,14 +14,16 @@ def cities_per_state(state_id=None):
     """
         cities route to handle http method for requested cities by state
     """
-    state_obj = storage.get('State', state_id)
+    state_obj = storage.get(CNC.get('State'), state_id)
     if state_obj is None:
         abort(404, 'Not found')
 
     if request.method == 'GET':
         all_cities = storage.all('City')
-        state_cities = [obj.to_json() for obj in all_cities.values()
-                        if obj.state_id == state_id]
+        state_cities = state_obj.cities
+        state_cities = list(map(lambda x: x.to_json(), state_cities))
+        #[obj.to_json() for obj in all_cities.values()
+        #               if obj.state_id == state_id]
         return jsonify(state_cities)
 
     if request.method == 'POST':
@@ -43,7 +45,7 @@ def cities_with_id(city_id=None):
     """
         cities route to handle http methods for given city
     """
-    city_obj = storage.get('City', city_id)
+    city_obj = storage.get(CNC.get('City'), city_id)
     if city_obj is None:
         abort(404, 'Not found')
 
