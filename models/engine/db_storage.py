@@ -47,8 +47,8 @@ class DBStorage:
            returns a dictionary of all objects
         """
         obj_dict = {}
-        if cls is not None:
-            a_query = self.__session.query(DBStorage.CNC[cls])
+        if cls and cls in DBStorage.CNC.values():
+            a_query = self.__session.query(cls)
             for obj in a_query:
                 obj_ref = "{}.{}".format(type(obj).__name__, obj.id)
                 obj_dict[obj_ref] = obj
@@ -119,10 +119,12 @@ class DBStorage:
         """
             retrieves one object based on class name and id
         """
-        if cls and id:
-            fetch = "{}.{}".format(cls, id)
-            all_obj = self.all(cls)
-            return all_obj.get(fetch)
+        if cls and id and cls in DBStorage.CNC.values():
+            try:
+                match = self.__session.query(cls).get(id)
+            except E:
+                return None
+            return match
         return None
 
     def count(self, cls=None):
