@@ -8,7 +8,7 @@ from models import storage
 from models import state, city, place, review, user, amenity
 
 
-@app_views.route('/status', methods=['GET'])
+@app_views.route('/status', methods=['GET', 'HEAD'])
 def status():
     """
     function for status route that returns the status
